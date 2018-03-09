@@ -102,7 +102,7 @@ def webhook():
 		else:
 			text='おはようございます。近くでイベントは特にありませんが、'
 
-	worksheet = gc.open("Motion_Detected").sheet1
+	worksheet = gc.open("IFTTT/Motion_Detected").sheet1
 	value=worksheet.cell(1,1).value
 	
 	if value=='FALSE':
