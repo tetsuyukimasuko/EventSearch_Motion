@@ -102,7 +102,7 @@ def webhook():
 		else:
 			text='おはようございます。近くでイベントは特にありませんが、'
 
-	worksheet = gc.open("IFTTT/Motion_Detected").sheet1
+	worksheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1Mr81g_26D1oeggNr-2vidvYam9mmWM2P9Ss9xRTqA3U/edit#gid=0').sheet1
 	value=worksheet.cell(1,1).value
 	
 	if value=='FALSE':
