@@ -30,7 +30,7 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST','GET'])
 def webhook():
 	
-	GHkit_ID=['p27bw7yga4','52sbt8fd8b']
+	GHkit_ID=['52sbt8fd8b']
 	now=datetime.datetime.now()
 	event_date= str(now.year)+"年"+str(now.month)+"月"+str(now.day)+"日"
 	speak_date="今日"
@@ -60,7 +60,7 @@ def webhook():
 		places=df_filtered['場所'].values.tolist()
 		timestamps=df_filtered['時間'].values.tolist()
 		regions=df_filtered['地区'].values.tolist()
-		text='おはようございます。'+speak_date+'は、'
+		text=speak_date+'は、'
 
 		for i in range(length):
 			if i>0:
@@ -89,7 +89,7 @@ def webhook():
 			places=df_filtered['場所'].values.tolist()
 			timestamps=df_filtered['時間'].values.tolist()
 			regions=df_filtered['地区'].values.tolist()
-			text='おはようございます。今日はイベントはありません。近い日にちだと、'+str(date_list[j]).replace('2018年','')+'に、'
+			text='今日はイベントはありません。近い日にちだと、'+str(date_list[j]).replace('2018年','')+'に、'
 
 			for i in range(length):
 				if i>0:
@@ -119,6 +119,8 @@ def webhook():
 		# httpリクエストを準備してPOST
 		r.append(requests.post(url, data=json_data, headers=headers))
 
+	#Spreadsheetに、起動したことを書き込む。
+	
 	return r
 
 
