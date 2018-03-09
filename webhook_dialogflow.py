@@ -102,7 +102,7 @@ def webhook():
 		else:
 			text='おはようございます。近くでイベントは特にありませんが、'
 
-	worksheet = gc.open("Motion Detected").sheet1
+	worksheet = gc.open("Motion_Detected").sheet1
 	value=worksheet.cell(1,1).value
 	
 	if value=='FALSE':
@@ -127,11 +127,8 @@ def webhook():
 		# httpリクエストを準備してPOST
 		return r
 	else:
-		pass			
-			
-
-
-
+		pass
+	
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
