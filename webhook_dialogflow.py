@@ -101,31 +101,35 @@ def webhook():
 
 		else:
 			text='おはようございます。近くでイベントは特にありませんが、'
-			
-	url='http://ifttt.ghkit.jp/'
-	headers = {"Content-Type" : "application/json"}
-	text=text+'外に出かけてみては、いかがでしょうか。'
-	
-	r=[]
-	
-	for j in range(len(GHkit_ID)):
-	#GHkitにPOST
 
-		text_post=GHkit_ID[j]+text
-		text_post='"'+text_post+'"'
-		obj={"message" : text_post}
-		json_data = json.dumps(obj).encode("utf-8")
-
-	#Spreadsheetかくにん
 	worksheet = gc.open("Motion Detected").sheet1
 	value=worksheet.acell('A1').value
 	if value=='FALSE':
+		#Spreadsheetかくにん
 		worksheet.update_acell('A1', "TRUE")
+		
+		url='http://ifttt.ghkit.jp/'
+		headers = {"Content-Type" : "application/json"}
+		text=text+'外に出かけてみては、いかがでしょうか。'
+
+		r=[]
+
+		for j in range(len(GHkit_ID)):
+		#GHkitにPOST
+
+			text_post=GHkit_ID[j]+text
+			text_post='"'+text_post+'"'
+			obj={"message" : text_post}
+			json_data = json.dumps(obj).encode("utf-8")
+			r.append(requests.post(url, data=json_data, headers=headers))
+
 		# httpリクエストを準備してPOST
-		r.append(requests.post(url, data=json_data, headers=headers))
 		return r
 	else:
-		pass
+		pass			
+			
+
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
