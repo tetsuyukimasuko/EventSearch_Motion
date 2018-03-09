@@ -103,10 +103,10 @@ def webhook():
 			text='おはようございます。近くでイベントは特にありませんが、'
 
 	worksheet = gc.open("Motion Detected").sheet1
-	value=worksheet.acell('A1').value
+	value=worksheet.cell(1,1).value
 	if value=='FALSE':
 		#Spreadsheetかくにん
-		worksheet.update_acell('A1', "TRUE")
+		worksheet.update_cell(1,1, "TRUE")
 		
 		url='http://ifttt.ghkit.jp/'
 		headers = {"Content-Type" : "application/json"}
