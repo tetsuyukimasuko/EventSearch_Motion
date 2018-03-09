@@ -127,7 +127,7 @@ def webhook():
 		# httpリクエストを準備してPOST
 		return r
 	else:
-		pass
+		return 0
 	
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
