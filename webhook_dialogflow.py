@@ -116,14 +116,13 @@ def webhook():
 		obj={"message" : text_post}
 		json_data = json.dumps(obj).encode("utf-8")
 
-		# httpリクエストを準備してPOST
-		r.append(requests.post(url, data=json_data, headers=headers))
-
 	#Spreadsheetかくにん
 	worksheet = gc.open("Motion Detected").sheet1
 	value=worksheet.acell('A1').value
 	if value=='FALSE':
 		worksheet.update_acell('A1', "TRUE")
+		# httpリクエストを準備してPOST
+		r.append(requests.post(url, data=json_data, headers=headers))
 		return r
 	else:
 		pass
