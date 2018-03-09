@@ -104,7 +104,8 @@ def webhook():
 
 	worksheet = gc.open("Motion Detected").sheet1
 	value=worksheet.cell(1,1).value
-	if value=='FALSE':
+	
+	if True:
 		#Spreadsheetかくにん
 		worksheet.update_cell(1,1, "TRUE")
 		
