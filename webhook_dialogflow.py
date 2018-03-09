@@ -119,10 +119,14 @@ def webhook():
 		# httpリクエストを準備してPOST
 		r.append(requests.post(url, data=json_data, headers=headers))
 
-	#Spreadsheetに、起動したことを書き込む。
-	
-	return r
-
+	#Spreadsheetかくにん
+	worksheet = gc.open("Motion Detected").sheet1
+	value=worksheet.acell('A1').value
+	if value=='FALSE':
+		worksheet.update_acell('A1', "TRUE")
+		return r
+	else:
+		pass
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
